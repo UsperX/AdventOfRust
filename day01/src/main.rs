@@ -1,5 +1,5 @@
-use core::panic;
-use std::{cmp, fs::File, path::Path, io::{BufReader, BufRead}};
+use std::{cmp, io::BufRead};
+use lib::read_file;
 fn main() {
     star1();
     star2(); 
@@ -40,15 +40,4 @@ fn star2() {
         }
     }
     println!("Total of top 3 elves: {}", top3.iter().sum::<i32>());
-}
-
-fn read_file(filepath: &str) -> BufReader<File> {
-    let path = Path::new(filepath);
-    let display = path.display();
-
-    let file = match File::open(&path) {
-        Err(why) => panic!("Couldn't open {}: {}", display, why),
-        Ok(file) => file,
-    };
-    return BufReader::new(file);
 }

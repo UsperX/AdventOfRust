@@ -1,5 +1,5 @@
-use std::{path::Path, fs::File, io::{BufReader, BufRead}};
-
+use std::io::BufRead;
+use lib::read_file;
 fn main() {
     star1();
     star2();
@@ -47,15 +47,4 @@ fn star2() {
         }
     }
     println!("Total Score (star2): {}", total);
-}
-
-fn read_file(filepath: &str) -> BufReader<File> {
-    let path = Path::new(filepath);
-    let display = path.display();
-
-    let file = match File::open(&path) {
-        Err(why) => panic!("Couldn't open {}: {}", display, why),
-        Ok(file) => file,
-    };
-    return BufReader::new(file);
 }
